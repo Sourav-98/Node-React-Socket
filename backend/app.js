@@ -10,21 +10,16 @@ const httpServer = http.createServer(expressServer);
 const io = socketio(httpServer);
 
 io.on("connection", (socket)=>{
-    // console.log("Connected via Socket.io");
-    console.log(socket.id);
 
-    // setTimeout(()=>{
-    //     socket.disconnect(true);
-    // }, 10000);
+    console.log("New Socket Connection - Socket ID: " + socket.id + "\n");
 
-    socket.on("messageBCD", ()=>{
-        // socket.emit("client-disconnect-success");
-        console.log("Disconnect Requested by user: "+socket.id);
+    socket.on("client-disconnect", ()=>{
+        console.log("Disconnection Request from " + socket.id + " ----- ");
         socket.disconnect(true);
     })
 
     socket.on("disconnect", ()=>{
-        console.log(socket.id + " disconnected...");
+        console.log("DISCONNECTED: " + socket.id + "\n");
     });
 });
 

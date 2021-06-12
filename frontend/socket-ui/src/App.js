@@ -7,7 +7,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Container, Grid, Typography, Paper, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-import { io } from 'socket.io-client';
+import { io as ioClient } from 'socket.io-client';
 
 
 const customStyles = makeStyles((theme)=>({
@@ -21,50 +21,35 @@ const customStyles = makeStyles((theme)=>({
   }
 }));
 
-// const socket = io({
-//   path: '',
-//   autoConnect: false,
-//   reconnection: false
-// });
-
-
-// socket.on("connect", ()=>{
-//   console.log('connected...');
-//   console.log(socket.id);
-//   // setSocketId(socket.id);    
-// });
-
-// socket.on("disconnect", ()=>{
-//   console.log("Disconnected from the server...");
-//   // setSocketId('---null---');
-// });
-
-
+// let socket;
 
 function App() {
+  
+  const socket = useRef(ioClient({
+    path: '', 
+    autoConnect: false,
+    reconnection: false
+  }));
 
   const styleClass = customStyles();
 
   const [socketStatus, setSocketStatus] = useState(false);
   const [socketId, setSocketId] = useState('---null---');
 
-  const socket = io({
-    path: '',
-    autoConnect: false,
-    reconnection: false
-  });
+  useEffect(()=>{
 
-  socket.on("connect", ()=>{
-    console.log('connected...');
-    console.log(socket.id);
-    setSocketId(socket.id);    
-  });
-
-  socket.on("disconnect", ()=>{
-    console.log("Disconnected from the server...");
-    setSocketId('---null---');
-  });
-
+    socket.current.on("connect", ()=>{
+      console.log('connected...');
+      console.log(socket.current.id);
+      setSocketId(socket.current.id);    
+    });
+  
+    socket.current.on("disconnect", ()=>{
+      console.log("Disconnected from the server...");
+      setSocketId('---null---');
+    });
+  }, []);
+  
   useEffect(()=>{
     if(socketId!=='---null---'){
       setSocketStatus(true);
@@ -75,14 +60,15 @@ function App() {
   }, [socketId]);
 
   function wsConnect(){
-    socket.connect();
-    // socket.close();
+    socket.current.connect();
   }
 
   function wsDisconnect(){
-    // console.log("Disconnect");
-    // socket.close();
-    socket.emit("messageBCD");
+    socket.current.close();
+  }
+
+  function wsServerDisconnect(){
+    socket.current.emit('client-disconnect')
   }
 
   return (
@@ -97,7 +83,8 @@ function App() {
             <Button variant={'outlined'} color={'primary'} onClick={wsConnect}>Connect to WS Server</Button>
             <br/>
             <br/>
-            <Button variant={'outlined'} color={'secondary'} onClick={wsDisconnect}>Disconnect from WS Server</Button>
+            <Button variant={'outlined'} color={'secondary'} onClick={wsDisconnect}>DIRECT Disconnect from WS Server</Button>
+            <Button variant={'outlined'} color={'secondary'} onClick={wsServerDisconnect}>MSG Disconnect from WS Server</Button>
           </Paper>
         </Grid>
         <Grid item xs={6}>
