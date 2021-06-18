@@ -7,21 +7,13 @@ const expressServer = require('./server');
 
 const httpServer = http.createServer(expressServer);
 
-const io = socketio(httpServer);
-
-io.on("connection", (socket)=>{
-
-    console.log("New Socket Connection - Socket ID: " + socket.id + "\n");
-
-    socket.on("client-disconnect", ()=>{
-        console.log("Disconnection Request from " + socket.id + " ----- ");
-        socket.disconnect(true);
-    })
-
-    socket.on("disconnect", ()=>{
-        console.log("DISCONNECTED: " + socket.id + "\n");
-    });
+const SocketService = require('./services/SocketService/SocketService');
+const io = socketio(httpServer, {
+    path: "/chat-api"
 });
+
+// Use the socket connection service
+SocketService(io);
 
 let port = 5000;
 let host = "localhost";

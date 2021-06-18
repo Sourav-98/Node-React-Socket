@@ -1,0 +1,85 @@
+
+
+/* ##################### BUTTON CSS ##################### */
+
+button{
+    cursor: pointer;
+}
+
+button.block{
+    width: 100%;
+}
+
+/* ------------------BUTTON : OUTLINED--------------------- */
+button.outlined{
+    padding: 0px 20px 0px 20px;
+    height: 40px; 
+    border-radius: 5px;
+    font-size: 15px;
+    text-transform: uppercase;
+    -webkit-transition: 0.1s ease-in-out;
+    transition: 0.1s ease-in-out;
+}
+
+button.outlined:disabled{
+    color: rgb(116, 116, 116)!important;
+    border: 0.5px solid rgb(116, 116, 116)!important;
+    background-color: rgba(116, 116, 116, 0.2)!important;
+    cursor:not-allowed!important;
+    /* pointer-events: none; */
+}
+
+/* ------------------BUTTON OUTLINED : PRIMARY----------------- */
+button.outlined.primary{
+    color: rgb(0, 0, 203);
+    border: 0.5px solid rgb(0, 0, 203);
+    background-color: rgba(0, 0, 0, 0);
+}
+
+button.outlined.primary:hover{
+    background-color: rgba(0, 0, 203, 0.2);
+}
+
+button.outlined.primary:active{
+    color: rgb(255, 255, 255);
+    background-color: rgba(0, 0, 203, 0.8);
+}
+
+/* ------------------BUTTON OUTLINED : DANGER----------------- */
+button.outlined.danger{
+    color: rgb(240, 2, 2);
+    border: 0.5px solid rgb(240, 0, 0);;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+button.outlined.danger:hover{
+    background-color: rgba(240, 0, 0, 0.2);
+}
+
+button.outlined.danger:active{
+    color: rgb(255, 255, 255);
+    background-color: rgba(240, 0, 0, 0.8);
+}
+
+/* ------------------BUTTON OUTLINED : SUCCESS----------------- */
+button.outlined.success{
+    color: rgb(0, 166, 0);
+    border: 0.5px solid rgb(0, 166, 0);;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+button.outlined.success:hover{
+    background-color: rgba(0, 166, 0, 0.2);
+}
+
+button.outlined.success:active{
+    color: rgb(255, 255, 255);
+    background-color: rgba(0, 166, 0, 0.8);
+}
+
+
+
+/* ------------------BUTTON : OUTLINED--------------------- */
+
+
+
