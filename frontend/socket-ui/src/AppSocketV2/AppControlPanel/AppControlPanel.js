@@ -25,7 +25,7 @@ export default function AppControlPanel(props){
     }
 
     const RoomsListElement = function(props){
-        if(!props.roomsList){
+        if(!props.roomsList || props.roomsList.length==0){
             return(
                 <div className="rooms-list">
                     <h4>No Rooms found!</h4>

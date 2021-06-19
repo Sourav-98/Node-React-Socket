@@ -34,7 +34,14 @@ export default function App(){
     // fetch the rooms details - GET method on localhost:5000/get-rooms
     useEffect(()=>{
         fetch('/get-rooms')
-        .then(res => res.json())
+        .then(res => {
+            if(res.status >= 200 && res.status<=299){
+                return res.json();
+            }
+            else{
+                return []
+            }
+        })
         .then(result => {
             setUserRoomsList(result);
         });
