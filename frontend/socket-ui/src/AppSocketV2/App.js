@@ -34,14 +34,7 @@ export default function App(){
     // fetch the rooms details - GET method on localhost:5000/get-rooms
     useEffect(()=>{
         fetch('/get-rooms')
-        .then(res => {
-            if(res.status >= 200 && res.status<=299){
-                return res.json();
-            }
-            else{
-                return []
-            }
-        })
+        .then(res => (res.status>=200 && res.status<=299) ? res.json() : [])    // if the server status is ok, then return the data in a json format, else return an empty array
         .then(result => {
             setUserRoomsList(result);
         });
@@ -54,14 +47,12 @@ export default function App(){
 
     //subscribe to the socket events
     useEffect(()=>{
-
         if (!socketClient){
             return;
         }
-
         SocketEventService(socketClient, setUserSocketId);
-
     }, [socketClient]);
+
 
     // chain the state change for the socket status
     useEffect(()=>{
@@ -70,7 +61,8 @@ export default function App(){
             return;
         }
         setSocketStatus(socketClient.connected);
-    }, [userSocketId])
+    }, [userSocketId]);
+
 
     return(
         <div className="app-container">

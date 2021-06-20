@@ -5,16 +5,26 @@ import { MdSend } from "react-icons/md";
 
 import { useState, useEffect } from "react";
 
+import { SocketChatMessagingService } from './SocketChatMessagingService';
+
 export default function ChatTextPanel(props){
 
     const [inputText, setInputText] = useState('');
 
     const [textAreaFocus, setTextAreaFocus] = useState(false);
 
+    // useEffect(()=>{
+    //     console.log(props.socket);
+    // }, [props.socketStatus]);
+
 
     useEffect(()=>{
-        console.log(props.socket);
-    }, [props.socketStatus]);
+        if(!props.socket){
+            return;
+        }
+        SocketChatMessagingService(props.socket);
+
+    }, [props.socket])
 
     function inputTextHandler(event){
         setInputText(event.target.value);
@@ -28,7 +38,7 @@ export default function ChatTextPanel(props){
         setTextAreaFocus(false);
     }
 
-    function EnterKeyPressHandler(keyEvent){
+    function enterKeyPressHandler(keyEvent){
         if(keyEvent.which === 13 && textAreaFocus){
             messageTransmit();
         }
@@ -45,7 +55,7 @@ export default function ChatTextPanel(props){
             <div className="chat-info-box"></div>
             <div className="chat-thread-box"></div>
             <div className="chat-text-area-box">
-                <input id="text-message" value={inputText} placeholder="Enter Message..." onChange={inputTextHandler} onFocus={focusHandler} onBlur={blurHandler} onKeyPress={EnterKeyPressHandler}/>
+                <input id="text-message" value={inputText} placeholder="Enter Message..." onChange={inputTextHandler} onFocus={focusHandler} onBlur={blurHandler} onKeyPress={enterKeyPressHandler}/>
                 <button id="messageButton" onClick={messageTransmit}>
                     <MdSend></MdSend>
                 </button>

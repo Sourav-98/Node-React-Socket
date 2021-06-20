@@ -1,4 +1,39 @@
 
+/* ################## Input CSS ############## */
+
+.text-input-round{
+    box-sizing: border-box;
+    outline: none;
+    width: 100%;
+    font-family: inherit;
+    border: 0.5px solid rgb(190, 190, 190);
+    -webkit-transition: 0.12s ease-in-out;
+    transition: 0.12s ease-in-out;
+}
+
+.text-input-round::placeholder{
+    font-style: italic;
+}
+
+.text-input-round:focus{
+    border: 0.5px solid rgb(120, 120, 120);
+}
+
+.text-input-round.sm{
+    height: 30px;
+    border-radius: 15px;
+    padding: 0px 11px 0px 11px;
+    font-size: 15px;
+}
+
+.text-input-round.md{
+    height: 40px;
+    border-radius: 20px;
+    font-size: 18px;
+    padding: 0px 16px 0px 16px;
+}
+
+
 
 /* ##################### BUTTON CSS ##################### */
 

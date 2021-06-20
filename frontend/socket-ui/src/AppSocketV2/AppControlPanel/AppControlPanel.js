@@ -1,7 +1,12 @@
 
 import "./AppControlPanel.css";
 
+import { useState } from 'react';
+
+
 export default function AppControlPanel(props){
+
+    // const [userName, setUserName] = useState(undefined);
 
     async function wsConnect(){
         console.log('Socket Connection Requested...');
@@ -50,7 +55,10 @@ export default function AppControlPanel(props){
             <div className="app-title-pane">
                 <h4>DUMMY CHAT APP</h4>
             </div>
-            <div className="user-socket-interface">
+            <div className="user-name-input-area">
+                <input className="text-input-round md" placeholder="Enter User Name..."/>
+            </div>
+            <div className="user-socket-interface">    
                 <div>
                     <button className='block outlined success' disabled={props.socketStatus} onClick={wsConnect}>Connect</button>
                 </div>
