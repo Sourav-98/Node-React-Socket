@@ -1,37 +1,16 @@
 
 const express = require('express');
-// const cors = require('cors');
 const app = express();
 
-// app.use(cors());
+const loginController = require('./controllers/auth/loginController');
+const registerController = require('./controllers/defaultController');
+const defaultController = require('./controllers/defaultController');
 
-let rooms_list = [
-    {
-        room_id: "ROOM_001",
-        room_name: "Default Room 1"
-    }, 
-    {
-        room_id: "ROOM_002",
-        room_name: "Default Room 2"
-    }
-]
+app.use(loginController);
+app.use(registerController);
 
-app.get("/get-rooms", (req, res)=>{
-    res.send(JSON.stringify(rooms_list));
-});
 
-app.get("/", (req, res)=>{
-    let defaultData = {
-        "message" : "Hello World"
-    };
-    res.send(JSON.stringify(defaultData));
-});
 
-app.use('*', (req, res)=>{
-    let errorData = {
-        "message" : "404 - Url not found"
-    };
-    res.send(JSON.stringify(errorData));
-});
+app.use(defaultController);
 
 module.exports = app;

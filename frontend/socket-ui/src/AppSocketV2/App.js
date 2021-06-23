@@ -3,7 +3,7 @@
 import './App.css';
 
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { io } from "socket.io-client";
 
 import { SocketEventService } from './SocketService/SocketService';
@@ -12,7 +12,7 @@ import AppControlPanel from './AppControlPanel/AppControlPanel';
 
 import ChatTextPanel from './ChatTextPanel/ChatTextPanel';
 
-export default function App(){
+export default function AppLanding(){
 
     const [socketClient, setSocketClient] = useState(null);
 
