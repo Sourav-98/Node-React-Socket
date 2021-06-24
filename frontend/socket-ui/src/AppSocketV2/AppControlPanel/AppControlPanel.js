@@ -56,14 +56,14 @@ export default function AppControlPanel(props){
                 <h4>DUMMY CHAT APP</h4>
             </div>
             <div className="user-name-input-area">
-                <input className="text-input-round md" placeholder="Enter User Name..."/>
+                <input className='cm-input round' placeholder="Enter User Name..."/>
             </div>
             <div className="user-socket-interface">    
                 <div>
-                    <button className='block outlined success' disabled={props.socketStatus} onClick={wsConnect}>Connect</button>
+                    <button className='cm-button block round outlined success' disabled={props.socketStatus} onClick={wsConnect}>Connect</button>
                 </div>
                 <div>
-                    <button className="block outlined danger" disabled={!props.socketStatus} onClick={wsDisconnect}>Disconnect</button>
+                    <button className="cm-button block round outlined danger" disabled={!props.socketStatus} onClick={wsDisconnect}>Disconnect</button>
                 </div>
             </div>
             <div className="user-rooms-list">

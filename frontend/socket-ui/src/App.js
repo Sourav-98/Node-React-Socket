@@ -12,15 +12,18 @@ import LoginLanding from "./AuthLanding/Login/LoginLanding";
 import RegisterLanding from "./AuthLanding/Register/RegisterLanding";
 import AppLanding from "./AppSocketV2/App";
 
+import AppTest from './AppTest/AppTest';
+
 export default function App(){
 
 	// const [isLoggedIn, setIsLoggedIn] = useState(false);
 
 	return(
 		<div>
-			{/* <AppLanding></AppLanding> */}
+			<AppLanding></AppLanding>
 			{/* <LoginLanding></LoginLanding> */}
-			<RegisterLanding></RegisterLanding>
+			{/* <RegisterLanding></RegisterLanding> */}
+			{/* <AppTest></AppTest> */}
 		</div>
 	);
 }

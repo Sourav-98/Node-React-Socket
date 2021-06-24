@@ -1,120 +1,171 @@
 
-/* ################## Input CSS ############## */
+/* ################## Custom Input CSS ############## */
 
-.text-input-round{
+.cm-input{
     box-sizing: border-box;
     outline: none;
     width: 100%;
     font-family: inherit;
+    margin: 5px 0px 5px 0px;
+    padding: 0px 13px 0px 13px;
     border: 0.5px solid rgb(190, 190, 190);
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 1);
+    color: rgb(0, 0, 0);
     -webkit-transition: 0.12s ease-in-out;
     transition: 0.12s ease-in-out;
 }
 
-.text-input-round::placeholder{
+.cm-input::placeholder{
     font-style: italic;
 }
 
-.text-input-round:focus{
+.cm-input:focus{
     border: 0.5px solid rgb(120, 120, 120);
 }
 
-.text-input-round.sm{
-    height: 30px;
-    border-radius: 15px;
-    padding: 0px 11px 0px 11px;
-    font-size: 15px;
+.cm-input.sm{
+    height: 30px!important;
+    font-size: 15px!important;
 }
 
-.text-input-round.md{
-    height: 40px;
-    border-radius: 20px;
-    font-size: 18px;
-    padding: 0px 16px 0px 16px;
+.cm-input, .cm-input.md{
+    height: 38px!important;
+    font-size: 19px!important;
 }
 
+.cm-input.lg{
+    height: 45px!important;
+    font-size: 23px!important;
+}
 
+/* applying round borders to inputs with the round classname */
+.cm-input.round{
+    border-radius: 70px!important;
+}
 
-/* ##################### BUTTON CSS ##################### */
+/*  Custom CSS Buttons */
 
-button{
+/* Default CSS Button-> cm-button outlined or just cm-button */
+
+.cm-button{
+    box-sizing: border-box;
+    outline: none;
+    font-family: inherit;
     cursor: pointer;
+    margin: 2px;
+    border-radius: 5px;
+    -webkit-transition: 0.12s ease-in-out;
+    transition: 0.12s ease-in-out;
 }
 
-button.block{
+.cm-button.block{
     width: 100%;
 }
 
-/* ------------------BUTTON : OUTLINED--------------------- */
-button.outlined{
-    padding: 0px 20px 0px 20px;
-    height: 40px; 
-    border-radius: 5px;
-    font-size: 15px;
-    text-transform: uppercase;
-    -webkit-transition: 0.1s ease-in-out;
-    transition: 0.1s ease-in-out;
+.cm-button.round{
+    border-radius: 100px;
 }
 
-button.outlined:disabled{
-    color: rgb(116, 116, 116)!important;
-    border: 0.5px solid rgb(116, 116, 116)!important;
-    background-color: rgba(116, 116, 116, 0.2)!important;
-    cursor:not-allowed!important;
-    /* pointer-events: none; */
+.cm-button, .cm-button.md{
+    font-size: 20px;
+    height: 45px;
+    padding: 0px 15px 0px 15px;
 }
 
-/* ------------------BUTTON OUTLINED : PRIMARY----------------- */
-button.outlined.primary{
-    color: rgb(0, 0, 203);
-    border: 0.5px solid rgb(0, 0, 203);
+.cm-button.sm{
+    font-size: 16px;
+    height: 36px;
+    padding: 0px 12px 0px 12px;
+}
+
+.cm-button.lg{
+    font-size: 25px;
+    height: 52px;
+    padding: 0px 18px 0px 18px;
+}
+
+.cm-button.outlined{
     background-color: rgba(0, 0, 0, 0);
 }
 
-button.outlined.primary:hover{
+.cm-button.outlined:disabled{
+    color: rgb(116, 116, 116)!important;
+    border: 0.5px solid rgb(116, 116, 116)!important;
+    background-color: rgba(116, 116, 116, 0.12)!important;
+    cursor:not-allowed!important;
+}
+
+.cm-button.outlined:active{
+    color: rgb(255, 255, 255)!important;
+}
+
+/* PRIMARY */
+.cm-button.outlined.primary{
+    color: rgb(0, 0, 203);
+    border: 0.5px solid rgb(0, 0, 203);
+}
+
+.cm-button.outlined.primary:hover{
     background-color: rgba(0, 0, 203, 0.2);
 }
 
-button.outlined.primary:active{
-    color: rgb(255, 255, 255);
+.cm-button.outlined.primary:active{
     background-color: rgba(0, 0, 203, 0.8);
 }
 
-/* ------------------BUTTON OUTLINED : DANGER----------------- */
-button.outlined.danger{
-    color: rgb(240, 2, 2);
-    border: 0.5px solid rgb(240, 0, 0);;
-    background-color: rgba(0, 0, 0, 0);
+/* SECONDARY */
+.cm-button.outlined.secondary{
+    color: rgb(70, 70, 70);
+    border: 0.5px solid rgb(70, 70, 70);
 }
 
-button.outlined.danger:hover{
-    background-color: rgba(240, 0, 0, 0.2);
+.cm-button.outlined.secondary:hover{
+    background-color: rgba(70, 70, 70, 0.2);
 }
 
-button.outlined.danger:active{
-    color: rgb(255, 255, 255);
-    background-color: rgba(240, 0, 0, 0.8);
+.cm-button.outlined.secondary:active{
+    background-color: rgba(70, 70, 70, 0.8);
 }
 
-/* ------------------BUTTON OUTLINED : SUCCESS----------------- */
-button.outlined.success{
+/* SUCCESS */
+.cm-button.outlined.success{
     color: rgb(0, 166, 0);
-    border: 0.5px solid rgb(0, 166, 0);;
-    background-color: rgba(0, 0, 0, 0);
+    border: 0.5px solid rgb(0, 166, 0);
 }
 
-button.outlined.success:hover{
+.cm-button.outlined.success:hover{
     background-color: rgba(0, 166, 0, 0.2);
 }
 
-button.outlined.success:active{
-    color: rgb(255, 255, 255);
+.cm-button.outlined.success:active{
     background-color: rgba(0, 166, 0, 0.8);
 }
 
+/* DANGER */
+.cm-button.outlined.danger{
+    color: rgb(240, 0, 0);
+    border: 0.5px solid rgb(240, 0, 0);
+}
 
+.cm-button.outlined.danger:hover{
+    background-color: rgba(240, 0, 0, 0.2);
+}
 
-/* ------------------BUTTON : OUTLINED--------------------- */
+.cm-button.outlined.danger:active{
+    background-color: rgba(240, 0, 0, 0.8);
+}
 
+/* ALERT */
+.cm-button.outlined.alert{
+    color: rgb(224, 146, 0);
+    border: 0.5px solid rgb(224, 146, 0);
+}
 
+.cm-button.outlined.alert:hover{
+    background-color: rgba(224, 146, 0, 0.2);
+}
 
+.cm-button.outlined.alert:active{
+    background-color: rgba(224, 146, 0, 0.8);
+}

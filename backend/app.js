@@ -5,13 +5,15 @@ const path = require('path');
 const socketio = require('socket.io');
 const dotenv = require('dotenv');
 
+const SocketService = require('./services/SocketService/SocketService');
+
 dotenv.config({path: path.join(__dirname , '.env')});
 
 const expressServer = require('./server');
 
 const httpServer = http.createServer(expressServer);
 
-const SocketService = require('./services/SocketService/SocketService');
+
 
 const io = socketio(httpServer, {       // creating the Socket.io server on the same port as that of the http server
     path: "/chat-api"
