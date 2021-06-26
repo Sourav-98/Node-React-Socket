@@ -17,7 +17,7 @@
 }
 
 .cm-input::placeholder{
-    font-style: italic;
+    /* font-style: italic; */
 }
 
 .cm-input:focus{
@@ -59,6 +59,11 @@
     transition: 0.12s ease-in-out;
 }
 
+.cm-button:disabled{
+    cursor: not-allowed;
+    opacity: 0.65;
+}
+
 .cm-button.block{
     width: 100%;
 }
@@ -93,7 +98,7 @@
     color: rgb(116, 116, 116)!important;
     border: 0.5px solid rgb(116, 116, 116)!important;
     background-color: rgba(116, 116, 116, 0.12)!important;
-    cursor:not-allowed!important;
+    /* cursor:not-allowed!important; */
 }
 
 .cm-button.outlined:active{
@@ -102,30 +107,30 @@
 
 /* PRIMARY */
 .cm-button.outlined.primary{
-    color: rgb(0, 0, 203);
-    border: 0.5px solid rgb(0, 0, 203);
+    color: rgb(35, 121, 250);
+    border: 0.5px solid rgb(35, 121, 250);
 }
 
 .cm-button.outlined.primary:hover{
-    background-color: rgba(0, 0, 203, 0.2);
+    background-color: rgba(35, 121, 250, 0.2);
 }
 
 .cm-button.outlined.primary:active{
-    background-color: rgba(0, 0, 203, 0.8);
+    background-color: rgba(35, 121, 250, 0.8);
 }
 
 /* SECONDARY */
 .cm-button.outlined.secondary{
-    color: rgb(70, 70, 70);
-    border: 0.5px solid rgb(70, 70, 70);
+    color: rgb(110, 110, 110);
+    border: 0.5px solid rgb(110, 110, 110);
 }
 
 .cm-button.outlined.secondary:hover{
-    background-color: rgba(70, 70, 70, 0.2);
+    background-color: rgba(110, 110, 110, 0.2);
 }
 
 .cm-button.outlined.secondary:active{
-    background-color: rgba(70, 70, 70, 0.8);
+    background-color: rgba(110, 110, 110, 0.8);
 }
 
 /* SUCCESS */
@@ -158,14 +163,14 @@
 
 /* ALERT */
 .cm-button.outlined.alert{
-    color: rgb(224, 146, 0);
-    border: 0.5px solid rgb(224, 146, 0);
+    color: rgb(240, 147, 8);
+    border: 0.5px solid rgb(240, 147, 8);
 }
 
 .cm-button.outlined.alert:hover{
-    background-color: rgba(224, 146, 0, 0.2);
+    background-color: rgba(240, 147, 8, 0.2);
 }
 
 .cm-button.outlined.alert:active{
-    background-color: rgba(224, 146, 0, 0.8);
+    background-color: rgba(240, 147, 8, 0.8);
 }

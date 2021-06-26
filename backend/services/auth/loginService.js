@@ -5,6 +5,6 @@ const defaultMessage = {
     message: "The service for providing authentication..."
 }
 
-exports.defaultLoginService = function(){
+exports.defaultLoginService = async function(){
     return defaultMessage;
 }

@@ -45,33 +45,47 @@ export default function AppTest(){
                 </div>
                 <br/><br/>
                 <span>Custom Round Buttons</span><br/><br/>
-                <span>Color:</span><br></br>
                 <button className="cm-button round outlined primary">Primary</button>
                 <button className="cm-button round outlined secondary">Secondary</button>
                 <button className="cm-button round outlined success">Success</button>
                 <button className="cm-button round outlined danger">Danger</button>
                 <button className="cm-button round outlined alert">Alert</button>
                 <br/><br/>
+            </div>
+            <div className="col-1 dark">
+                <span>Custom Dark Buttons</span><br/><br/>
+                <span>Color:</span><br></br>
+                <button className="cm-button outlined primary">Primary</button>
+                <button className="cm-button outlined secondary">Secondary</button>
+                <button className="cm-button outlined success">Success</button>
+                <button className="cm-button outlined danger">Danger</button>
+                <button className="cm-button outlined alert">Alert</button>
+                <br/><br/>
                 <span>Disabled:</span><br></br>
-                <button className="cm-button round outlined primary" disabled>Primary</button>
-                <button className="cm-button round outlined secondary" disabled>Secondary</button>
-                <button className="cm-button round outlined success" disabled>Success</button>
-                <button className="cm-button round outlined danger" disabled>Danger</button>
-                <button className="cm-button round outlined alert" disabled>Alert</button>
+                <button className="cm-button outlined primary" disabled>Primary</button>
+                <button className="cm-button outlined secondary" disabled>Secondary</button>
+                <button className="cm-button outlined success" disabled>Success</button>
+                <button className="cm-button outlined danger" disabled>Danger</button>
+                <button className="cm-button outlined alert" disabled>Alert</button>
                 <br/><br/>
                 <span>Button Sizes</span><br/>
                 <div className="button-sizing-box">
-                    <button className="cm-button round sm outlined primary">Button sm</button>
-                    <button className="cm-button round outlined success">Button md</button>
-                    <button className="cm-button round lg outlined danger">Button lg</button>
+                    <button className="cm-button sm outlined primary">Button sm</button>
+                    <button className="cm-button outlined success">Button md</button>
+                    <button className="cm-button lg outlined danger">Button lg</button>
                 </div>
                 <br/><br/>
+                <span>Custom Round Buttons</span><br/><br/>
+                <button className="cm-button round outlined primary">Primary</button>
+                <button className="cm-button round outlined secondary">Secondary</button>
+                <button className="cm-button round outlined success">Success</button>
+                <button className="cm-button round outlined danger">Danger</button>
+                <button className="cm-button round outlined alert">Alert</button>
+                <br/><br/>
+                
             </div>
             <div className="col-1">
-
-            </div>
-            <div className="col-1">
-
+                
             </div>
         </div>
     )

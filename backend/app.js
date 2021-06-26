@@ -5,6 +5,8 @@ const path = require('path');
 const socketio = require('socket.io');
 const dotenv = require('dotenv');
 
+const { Connection } = require('./util/db1');
+
 const SocketService = require('./services/SocketService/SocketService');
 
 dotenv.config({path: path.join(__dirname , '.env')});
@@ -13,7 +15,12 @@ const expressServer = require('./server');
 
 const httpServer = http.createServer(expressServer);
 
+// establish the db connection
+Connection.connect();
 
+// console.log(Connection._db);
+
+// console.log(db.getDbConn());
 
 const io = socketio(httpServer, {       // creating the Socket.io server on the same port as that of the http server
     path: "/chat-api"

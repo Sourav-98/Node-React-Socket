@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 
 const loginController = require('./controllers/auth/loginController');
-const registerController = require('./controllers/defaultController');
+const registerController = require('./controllers/auth/registerController');
 const defaultController = require('./controllers/defaultController');
 
 app.use(loginController);

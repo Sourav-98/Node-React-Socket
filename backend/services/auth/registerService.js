@@ -4,6 +4,6 @@ let defaultMessage = {
     message: "The service responsible for creating new users"
 }
 
-exports.defaultRegisterService = function(){
+exports.defaultRegisterService = async function(){
     return defaultMessage;
 }

@@ -3,8 +3,8 @@ const loginController = require('express').Router();
 
 const loginService = require('./../../services/auth/loginService');
 
-loginController.get('/login', (req, res)=>{
-    let data = loginService.defaultLoginService();
+loginController.get('/login', async (req, res)=>{
+    let data = await loginService.defaultLoginService();
     res.send(JSON.stringify(data));
 })
 
