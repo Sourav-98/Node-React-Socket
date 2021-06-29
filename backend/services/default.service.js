@@ -1,7 +1,7 @@
 
 //retrieve the database connnection
 
-const { Connection } = require('./../util/db1');
+const { Connection } = require('../util/db1');
 
 exports.defaultHomeService = async function(){
     return {
@@ -25,8 +25,13 @@ exports.getUserRooms = async function(){
 }
 
 exports.apiGetStudents = async function(){
-    let data = await Connection._db.collection('students').find().toArray();
-    return data;
+    try{
+        let data = await Connection._db.collection('students').find().toArray();
+        return data;
+    }
+    catch(err){
+        throw err;
+    }
 }
 
 exports.error404Service = async function(){

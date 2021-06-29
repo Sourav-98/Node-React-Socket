@@ -4,16 +4,21 @@ const config = require('./db.config').dbConfig;
 
 class Connection{
 
-    static async connect(){
+    static connect(){
         if(this._client){
             return this._client;
         }
         else{
-            this._client = await MongoClient.connect(this.config.uri, this.config.options);
-            this._db = this._client.db(this.config.db);
-            console.log(this._client);
-            console.log(this._db);
-            return this._client;
+            MongoClient.connect(this.config.uri, this.config.options)
+            .then( client =>{
+                console.log("--> Connected to the database");
+                this._client = client;
+                this._db = client.db(this.config.db);
+                return client;
+            })
+            .catch( err =>{
+                throw err;
+            })
         }
     }
 }

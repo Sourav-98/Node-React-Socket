@@ -21,6 +21,23 @@ export default function AppTest(){
                 <br/>
                 <br/>
             </div>
+            <div className="col-1 dark">
+                <span>Custom Input Dark</span><br/>
+                <br/>
+                <span>Default:</span>
+                <input className="cm-input dark" placeholder="cm-input DEFAULT"></input>
+                <input className="cm-input dark sm" placeholder="cm-input sm"></input>
+                <input className="cm-input dark md" placeholder="cm-input md --- DEFAULT"></input>
+                <input className="cm-input dark lg" placeholder="cm-input lg"></input>
+                <hr/>
+                <span>Round:</span>
+                <input className="cm-input dark round" placeholder="cm-input DEFAULT"></input>
+                <input className="cm-input dark round sm" placeholder="cm-input sm"></input>
+                <input className="cm-input dark round md" placeholder="cm-input md --- DEFAULT"></input>
+                <input className="cm-input dark round lg" placeholder="cm-input lg"></input>
+                <br/>
+                <br/>
+            </div>
             <div className="col-1">
                 <span>Custom Default Buttons</span><br/><br/>
                 <span>Color:</span><br></br>
@@ -82,9 +99,6 @@ export default function AppTest(){
                 <button className="cm-button round outlined danger">Danger</button>
                 <button className="cm-button round outlined alert">Alert</button>
                 <br/><br/>
-                
-            </div>
-            <div className="col-1">
                 
             </div>
         </div>

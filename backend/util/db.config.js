@@ -6,5 +6,5 @@ exports.dbConfig = {
         connectTimeoutMS: 3000, 
         socketTimeoutMS: 5000
     }, 
-    db: 'test'
+    db: 'test-chat-app'
 }

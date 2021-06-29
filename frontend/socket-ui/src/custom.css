@@ -10,18 +10,32 @@
     padding: 0px 13px 0px 13px;
     border: 0.5px solid rgb(190, 190, 190);
     border-radius: 5px;
-    background-color: rgba(255, 255, 255, 1);
+    background-color: rgba(255, 255, 255, 0);
     color: rgb(0, 0, 0);
     -webkit-transition: 0.12s ease-in-out;
     transition: 0.12s ease-in-out;
 }
 
+.cm-input.dark{
+    color: rgb(255, 255, 255);
+    border: 0.5px solid rgb(150, 150, 150);
+}
+
 .cm-input::placeholder{
+    font-family: inherit;
     /* font-style: italic; */
 }
 
 .cm-input:focus{
-    border: 0.5px solid rgb(120, 120, 120);
+    border: 1px solid rgb(100, 100, 100);
+    background-color: rgba(0, 0, 0, 0.05);
+    /* box-shadow: 2px 2px 3px rgb(190, 190, 190); */
+}
+
+.cm-input.dark:focus{
+    border: 1px solid rgb(190, 190, 190);
+    background-color: rgba(255, 255, 255, 0.05);
+    /* box-shadow: 2px 2px 3px rgb(190, 190, 190); */
 }
 
 .cm-input.sm{

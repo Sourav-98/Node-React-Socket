@@ -1,8 +1,8 @@
 const defaultController = require('express').Router();
 
-const { Connection } = require('./../util/db1');
+const { Connection } = require('../util/db1');
 
-const defaultService = require('./../services/defaultService');
+const defaultService = require('../services/default.service');
 
 defaultController.get('/', async (req, res)=>{
     // console.log(db);
@@ -11,8 +11,13 @@ defaultController.get('/', async (req, res)=>{
 });
 
 defaultController.get('/api-students', async (req, res)=>{
-    let data = await defaultService.apiGetStudents();
-    res.send(JSON.stringify(data));
+    try{
+        let data = await defaultService.apiGetStudents();
+        res.send(JSON.stringify(data));
+    }
+    catch(err){
+        res.send(JSON.stringify(err));
+    }
 })
 
 defaultController.get('/get-rooms', async(req, res)=>{
