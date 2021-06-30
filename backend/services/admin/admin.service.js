@@ -1,5 +1,5 @@
 
-const { Connection } = require('./../../util/db1');
+const { Connection } = require('../../util/dbConn');
 const { ChatUser } = require('./../../models/ChatUser');
 
 
@@ -14,8 +14,12 @@ exports.getChatUsers = async function(){
 }
 
 exports.getChatUsersAlt = async function(){
+    await this.dummySleepPromise(3000);
     return Connection._db.collection('chat-users').find().toArray()
     .then(data =>{
+        this.dummySleepPromise(2000);
+        console.log('---service---');
+        console.log(data);
         return data;
     })
     .catch(err =>{
@@ -23,23 +27,8 @@ exports.getChatUsersAlt = async function(){
     })
 }
 
-exports.getChatUsers1 = function(){
-    let data = undefined;
-    Connection._db.collection('chat-users').find().toArray((err, result)=>{
-        if(err){
-            throw err;
-        }
-        else{
-            data = result;
-            console.log("Inside the callback function");
-            return result;
-        }
-    });
-    console.log("Outside the callback function");
-    return new Promise((resolve, reject)=>{
-        resolve(data);
-    });
-}
+
+//-------------- DELAY FUNCTIONS ---------------
 
 exports.dummySleepPromise = function(interval){
     return new Promise((resolve, reject)=>{
@@ -52,21 +41,3 @@ exports.dummySleepAsync = async function(interval){
         setTimeout(resolve, interval);
     });
 }
-
-
-// exports.getRooms = function(){
-//     let rooms_result = await Connection._db.collection('rooms').find().toArray();
-//     let roomsData = [];
-
-//     rooms_result.forEach(room => {
-//         let room_obj = {
-//             room_id: room._id,
-//             room_name: room.name
-//         };
-//         let storage_items = await Connection._db.collection('storage').find({ _id: {$in : room.storage_i} }).toArray();
-//         room_obj.storage_items = storage_items;
-//         roomsData.push(room_obj);
-//     });
-//     res.send(roomsData);
-// }
-

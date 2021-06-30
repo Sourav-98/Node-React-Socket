@@ -1,6 +1,6 @@
 
 const { ChatUser } = require('../../models/ChatUser');
-const { Connection } = require('../../util/db1');
+const { Connection } = require('../../util/dbConn');
 
 let defaultMessage = {
     service: "Register Service", 

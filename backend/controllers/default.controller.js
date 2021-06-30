@@ -1,6 +1,6 @@
 const defaultController = require('express').Router();
 
-const { Connection } = require('../util/db1');
+const { Connection } = require('../util/dbConn');
 
 const defaultService = require('../services/default.service');
 

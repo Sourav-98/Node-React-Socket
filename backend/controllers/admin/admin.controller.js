@@ -3,17 +3,7 @@ const adminController = require('express').Router();
 const adminService = require('./../../services/admin/admin.service');
 
 adminController.get('/get-users-list', async(req, res)=>{
-    // await adminService.dummySleepPromise(2000);
-    // await adminService.dummySleepAsync(4000);
-    // adminService.getChatUsers()
-    // .then(usersList =>{
-    //     res.send(usersList);
-    // })
-    // .catch(err =>{
-    //     res.send(err);
-    // })
-
-    let data = await adminService.getChatUsers1();
+    let data = await adminService.getChatUsers();
     res.send(data);
 });
 
@@ -22,6 +12,9 @@ adminController.get('/get-users-list', async(req, res)=>{
 adminController.get('/get-users-list-alt', async(req, res)=>{
     try{
         let data = await adminService.getChatUsersAlt();
+        console.log('---controller---')
+        console.log(data);
+        // await adminService.dummySleepPromise(5000);
         res.send(data);
     }
     catch(err){

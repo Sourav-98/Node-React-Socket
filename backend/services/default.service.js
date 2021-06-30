@@ -1,7 +1,7 @@
 
 //retrieve the database connnection
 
-const { Connection } = require('../util/db1');
+const { Connection } = require('../util/dbConn');
 
 exports.defaultHomeService = async function(){
     return {

@@ -1,10 +1,14 @@
 const MongoClient = require('mongodb').MongoClient;
 
-const config = require('./db.config').dbConfig;
+const dbConfig = require('./db.config').dbConfig;
 
 class Connection{
 
-    static connect(){
+    static _client = undefined;
+    static _db = undefined;
+    static config = dbConfig;
+
+    static async connect(){
         if(this._client){
             return this._client;
         }
@@ -14,7 +18,7 @@ class Connection{
                 console.log("--> Connected to the database");
                 this._client = client;
                 this._db = client.db(this.config.db);
-                return client;
+                // console.log(Connection);
             })
             .catch( err =>{
                 throw err;
@@ -22,9 +26,5 @@ class Connection{
         }
     }
 }
-
-Connection._client = undefined;
-Connection._db = undefined;
-Connection.config = config;
 
 module.exports = { Connection };
