@@ -27,8 +27,3 @@ exports.newUserRegistration = async function(userData){
         }
     }
 }
-
-
-
-
-

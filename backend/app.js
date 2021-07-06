@@ -1,33 +1,43 @@
 // Main NodeJS app definition
 
 const http = require('http');
+const https = require('https');
+const fs = require('fs');
+const crypto = require('crypto');
 const path = require('path');
+
 const socketio = require('socket.io');
 const dotenv = require('dotenv');
 
 const { Connection } = require('./util/dbConn');
 
-const SocketService = require('./services/SocketService/SocketService');
-
-dotenv.config({path: path.join(__dirname , '.env')});
-
 const expressServer = require('./server');
 
-const httpServer = http.createServer(expressServer);
+const SocketService = require('./services/SocketService/SocketService');
+
+let privateKey = fs.readFileSync('./http-secure/privateKey.pem');
+let certificate = fs.readFileSync('./http-secure/certificate.pem');
+
+let credentials = {
+    key: privateKey, 
+    cert: certificate
+}
+
+const httpsServer = https.createServer(credentials, expressServer);
 
 // establish the db connection
 Connection.connect();
 
-const io = socketio(httpServer, {       // creating the Socket.io server on the same port as that of the http server
+const io = socketio(httpsServer, {       // creating the Socket.io server on the same port as that of the http server
     path: "/chat-api"
 });
 
 // Use the socket connection service
 SocketService(io);
 
-let port = process.env['PORT'];
-let host = process.env['HOST'];
+let port = process.env['PORT'] || 5000;
+let host = process.env['HOST'] || "localhost";
 
-httpServer.listen(port, host, ()=>{
-    console.log("NodeJS Http Server running on http://" + host + ":" + port + '\n');
+httpsServer.listen(port, ()=>{
+    console.log("NodeJS Https Server running on https://" + host + ":" + port + '\n');
 });

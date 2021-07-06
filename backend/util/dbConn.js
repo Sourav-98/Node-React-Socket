@@ -2,6 +2,8 @@ const MongoClient = require('mongodb').MongoClient;
 
 const dbConfig = require('./db.config').dbConfig;
 
+
+// MongoDb Connection Pool
 class Connection{
 
     static _client = undefined;
@@ -15,7 +17,7 @@ class Connection{
         else{
             MongoClient.connect(this.config.uri, this.config.options)
             .then( client =>{
-                console.log("--> Connected to the database");
+                console.log("--------Connected to MongoDB database--------");
                 this._client = client;
                 this._db = client.db(this.config.db);
                 // console.log(Connection);

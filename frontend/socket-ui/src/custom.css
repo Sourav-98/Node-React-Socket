@@ -7,13 +7,16 @@
     width: 100%;
     font-family: inherit;
     margin: 5px 0px 5px 0px;
-    padding: 0px 13px 0px 13px;
     border: 0.5px solid rgb(190, 190, 190);
     border-radius: 5px;
     background-color: rgba(255, 255, 255, 0);
     color: rgb(0, 0, 0);
     -webkit-transition: 0.12s ease-in-out;
     transition: 0.12s ease-in-out;
+}
+
+.cm-input.round{
+    border-radius: 999px;
 }
 
 .cm-input.dark{
@@ -23,49 +26,39 @@
 
 .cm-input::placeholder{
     font-family: inherit;
-    /* font-style: italic; */
 }
 
 .cm-input:focus{
-    border: 1px solid rgb(100, 100, 100);
-    background-color: rgba(0, 0, 0, 0.05);
-    /* box-shadow: 2px 2px 3px rgb(190, 190, 190); */
-}
-
-.cm-input.dark:focus{
-    border: 1px solid rgb(190, 190, 190);
-    background-color: rgba(255, 255, 255, 0.05);
-    /* box-shadow: 2px 2px 3px rgb(190, 190, 190); */
+    border: 0.5px solid rgb(100, 100, 100);
 }
 
 .cm-input.sm{
-    height: 30px!important;
-    font-size: 15px!important;
+    height: 32px;
+    font-size: 13px;
+    padding: 0px 9px 0px 9px;
 }
 
 .cm-input, .cm-input.md{
-    height: 38px!important;
-    font-size: 19px!important;
+    height: 40px;
+    font-size: 17px;
+    padding: 0px 11px 0px 11px;
 }
 
 .cm-input.lg{
-    height: 45px!important;
-    font-size: 23px!important;
+    height: 50px;
+    font-size: 21px;
+    padding: 0px 14px 0px 14px;
 }
 
-/* applying round borders to inputs with the round classname */
-.cm-input.round{
-    border-radius: 70px!important;
-}
 
-/*  Custom CSS Buttons */
-
-/* Default CSS Button-> cm-button outlined or just cm-button */
+/* ######################  Custom CSS Buttons ###############*/
 
 .cm-button{
     box-sizing: border-box;
     outline: none;
+    opacity: 1.0;
     font-family: inherit;
+    color: rgb(255, 255, 255);
     cursor: pointer;
     margin: 2px;
     border-radius: 5px;
@@ -73,64 +66,134 @@
     transition: 0.12s ease-in-out;
 }
 
-.cm-button:disabled{
-    cursor: not-allowed;
-    opacity: 0.65;
-}
-
 .cm-button.block{
     width: 100%;
 }
 
-.cm-button.round{
-    border-radius: 100px;
+.cm-button:disabled{
+    pointer-events: none;
+    opacity: 0.55;
 }
 
-.cm-button, .cm-button.md{
-    font-size: 20px;
-    height: 45px;
-    padding: 0px 15px 0px 15px;
+.cm-button.round{
+    border-radius: 999px;
 }
 
 .cm-button.sm{
-    font-size: 16px;
-    height: 36px;
-    padding: 0px 12px 0px 12px;
+    font-size: 14px;
+    height: 32px;
+    padding: 0px 12px 2px 12px;
+}
+
+.cm-button, .cm-button.md{
+    font-size: 17px;
+    height: 40px;
+    padding: 0px 15px 0px 15px;
 }
 
 .cm-button.lg{
-    font-size: 25px;
-    height: 52px;
+    font-size: 21px;
+    height: 50px;
     padding: 0px 18px 0px 18px;
 }
+
+/* CM-BUTTON DEFAULT */
+
+/* PRIMARY */
+.cm-button.primary{
+    background-color: rgb(38, 125, 255);
+    border: 0.5px solid rgb(38, 125, 255);
+}
+
+.cm-button.primary:hover{
+    background-color: rgb(23, 110, 250);
+}
+
+.cm-button.primary:active{
+    background-color: rgb(8, 95, 245);
+}
+
+/* SECONDARY */
+.cm-button.secondary{
+    background-color: rgb(110, 110, 110);
+    border: 0.5px solid rgb(110, 110, 110);
+}
+
+.cm-button.secondary:hover{
+    background-color: rgb(95, 95, 95);
+}
+
+.cm-button.secondary:active{
+    background-color: rgb(80, 80, 80);
+}
+
+/* SUCCESS */
+.cm-button.success{
+    background-color: rgb(0, 166, 0);
+    border: 0.5px solid rgb(0, 166, 0);
+}
+
+.cm-button.success:hover{
+    background-color: rgb(0, 151, 0);
+}
+
+.cm-button.success:active{
+    background-color: rgb(0, 136, 0);
+}
+
+/* DANGER */
+.cm-button.danger{
+    background-color: rgb(226, 0, 0);
+    border: 0.5px solid rgb(226, 0, 0);
+}
+
+.cm-button.danger:hover{
+    background-color: rgb(211, 0, 0);
+}
+
+.cm-button.danger:active{
+    background-color: rgb(196, 0, 0);
+}
+
+/* ALERT */
+.cm-button.alert{
+    background-color: rgb(240, 147, 8);
+    border: 0.5px solid rgb(240, 147, 8);
+}
+
+.cm-button.alert:hover{
+    background-color: rgb(225, 132, 8);
+}
+
+.cm-button.alert:active{
+    background-color: rgb(210, 117, 8);
+}
+
+
+
+/* CM-BUTTON OUTLINED */
 
 .cm-button.outlined{
     background-color: rgba(0, 0, 0, 0);
 }
 
-.cm-button.outlined:disabled{
-    color: rgb(116, 116, 116)!important;
-    border: 0.5px solid rgb(116, 116, 116)!important;
-    background-color: rgba(116, 116, 116, 0.12)!important;
-    /* cursor:not-allowed!important; */
-}
-
 .cm-button.outlined:active{
-    color: rgb(255, 255, 255)!important;
+    color: rgb(255, 255, 255);
 }
 
 /* PRIMARY */
 .cm-button.outlined.primary{
-    color: rgb(35, 121, 250);
-    border: 0.5px solid rgb(35, 121, 250);
+    color: rgb(38, 125, 255);
+    border: 0.5px solid rgb(38, 125, 255);
 }
 
 .cm-button.outlined.primary:hover{
-    background-color: rgba(35, 121, 250, 0.2);
+    background-color: rgba(38, 125, 255, 0.2);
 }
 
 .cm-button.outlined.primary:active{
-    background-color: rgba(35, 121, 250, 0.8);
+    color: rgb(255, 255, 255);
+    background-color: rgb(38, 125, 255);
 }
 
 /* SECONDARY */
@@ -144,7 +207,8 @@
 }
 
 .cm-button.outlined.secondary:active{
-    background-color: rgba(110, 110, 110, 0.8);
+    color: rgb(255, 255, 255);
+    background-color: rgb(110, 110, 110);
 }
 
 /* SUCCESS */
@@ -158,21 +222,23 @@
 }
 
 .cm-button.outlined.success:active{
-    background-color: rgba(0, 166, 0, 0.8);
+    color: rgb(255, 255, 255);
+    background-color: rgb(0, 166, 0);
 }
 
 /* DANGER */
 .cm-button.outlined.danger{
-    color: rgb(240, 0, 0);
-    border: 0.5px solid rgb(240, 0, 0);
+    color: rgb(226, 0, 0);
+    border: 0.5px solid rgb(226, 0, 0);
 }
 
 .cm-button.outlined.danger:hover{
-    background-color: rgba(240, 0, 0, 0.2);
+    background-color: rgba(226, 0, 0, 0.2);
 }
 
 .cm-button.outlined.danger:active{
-    background-color: rgba(240, 0, 0, 0.8);
+    color: rgb(255, 255, 255);
+    background-color: rgb(226, 0, 0);
 }
 
 /* ALERT */
@@ -186,5 +252,6 @@
 }
 
 .cm-button.outlined.alert:active{
-    background-color: rgba(240, 147, 8, 0.8);
+    color: rgb(255, 255, 255);
+    background-color: rgb(240, 147, 8);
 }

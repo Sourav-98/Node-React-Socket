@@ -37,6 +37,6 @@ exports.apiGetStudents = async function(){
 exports.error404Service = async function(){
     return {
         service: "Default Service", 
-        message: "Error 404 - Page Not Found"
+        message: "Error 404 - Route Not Found"
     }
 }

@@ -2,12 +2,13 @@
 
 class ChatUser{
     
-    constructor(firstName, lastName, emailId, password){
+    constructor(firstName, lastName, emailId, password, rolesList){
         this.firstName = firstName;
         this.lastName = lastName;
         this.emailId = emailId;
         this.password = password;
         this.isVerified = false;
+        this.roles = rolesList;
     }
 
     setFirstName(firstName){

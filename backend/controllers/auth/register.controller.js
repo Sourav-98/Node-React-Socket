@@ -18,6 +18,12 @@ registerController.post('/register', async (req, res)=>{
     catch(err){
         res.send(err);
     }
+});
+
+registerController.post('/register-dummy', async(req, res)=>{
+    let userData = req.body;
+    console.log(userData);
+    res.send({"message" : "Data received!"});
 })
 
 module.exports = registerController;
