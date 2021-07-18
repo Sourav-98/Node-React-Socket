@@ -173,4 +173,4 @@ function ChatTextPanel(props){
     );
 }
 
-export default React.memo(ChatTextPanel);
+export default ChatTextPanel;
