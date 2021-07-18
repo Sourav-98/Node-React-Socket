@@ -1,6 +1,6 @@
 
 // import './custom.css';
-import './App.css';
+import './ChatHome.css';
 
 
 import { useState, useEffect } from 'react';
@@ -36,7 +36,9 @@ export default function AppLanding(){
         fetch('/get-rooms')
         .then(res => (res.status>=200 && res.status<=299) ? res.json() : [])    // if the server status is ok, then return the data in a json format, else return an empty array
         .then(result => {
-            setUserRoomsList(result);
+            setTimeout(()=>{
+                setUserRoomsList(result);
+            }, 4000);
         });
     }, []);
 

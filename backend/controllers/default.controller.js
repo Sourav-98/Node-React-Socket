@@ -25,9 +25,9 @@ defaultController.get('/get-rooms', async(req, res)=>{
     res.send(JSON.stringify(data));
 })
 
-defaultController.use('*', async(req, res)=>{
-    let errorData = await defaultService.error404Service();
-    res.send(JSON.stringify(errorData));
-})
+// defaultController.use('*', async(req, res)=>{
+//     let errorData = await defaultService.error404Service();
+//     res.send(JSON.stringify(errorData));
+// })
 
 module.exports = defaultController;
