@@ -9,90 +9,117 @@ import { SocketChatMessagingService } from './SocketChatMessagingService';
 
 import ChatTextElement from "./ChatTextElement/ChatTextElement";
 
+
+
+let firstLoadFlag = false;
+let prevLoadFlag = false;
+let newChatFlag = false;
+
+let currentScrollHeight = 0;
+let currentScrollTop = 0;
+
+let lastMsgCount = 0;
+let chatWindow = 0;
+
 function ChatTextPanel(props){
 
     const [inputText, setInputText] = useState('');
     const [textAreaFocus, setTextAreaFocus] = useState(false);
 
     const chatBoxRef = useRef();
-    const currentScrollHeight = useRef(0);
-    const currentScrollTop = useRef(0);
-
-    const firstLoad = useRef(true);
 
     const [chatThread, setChatThread] = useState([]);
-    const lastMsgCount = useRef(0);
+    // const lastMsgCount = useRef(0);
 
-    // useEffect(()=>{
-    //     console.log("--------------RENDERED--------------");
-    // });
+    // Re render marker - debugging
+    useEffect(()=>{
+        console.log("--------------RENDERED--------------");
+    });
 
-    // chats first load
+    // Chat Thread First Load
     useEffect(()=>{
         (async ()=>{
             let chatData = await fetchChatInitial();
+            firstLoadFlag = true;
             setChatThread(chatData);
-            firstLoad.current = false;
         })()
     }, []);
 
-    // setting the scroll positions of the chat box
-    useLayoutEffect(()=>{
-        if(firstLoad.current){
-            // console.log('First Load');
-            dropToBottom(chatBoxRef.current);
+    // updating the flag bits accordingly for useLayoutEffect()
+    useEffect(()=>{
+        if(firstLoadFlag){
+            console.log('First Load');
+            firstLoadFlag = false;
         }
-        else{
-            // console.log('Previous Load');
-            maintainScroll(chatBoxRef.current);
+        if(prevLoadFlag){
+            console.log('Previous Load');
+            prevLoadFlag = false;
+        }
+        if(newChatFlag){
+            console.log('New Chat Load');
+            newChatFlag = false;
         }
     }, [chatThread]);
 
+    // setting the scroll positions of the chat box
+    useLayoutEffect(()=>{
+        if(firstLoadFlag){
+            dropToBottom(chatBoxRef.current);
+        }
+        if(prevLoadFlag){
+            maintainScrollOnPrevLoad(chatBoxRef.current);
+        }
+        if(newChatFlag){
+            dropToBottom(chatBoxRef.current, true);
+        }
+    }, [chatThread]);
+
+
+    // chat socket interface
     useEffect(()=>{
         if(!props.socket){
             return;
         }
         SocketChatMessagingService(props.socket);
-
     }, [props.socket]);
 
 
     const dropToBottom = (parentRef, isSmooth = false)=>{
-        currentScrollHeight.current = parentRef.scrollHeight;
-        parentRef.style.scrollBehavior = isSmooth ? 'smooth' : 'auto';
-        parentRef.scrollTop = parentRef.scrollHeight - parentRef.clientHeight;
-        parentRef.style.scrollBehavior = 'auto';
+        currentScrollHeight = parentRef.scrollHeight;
+        parentRef.scrollTo({
+            top: parentRef.scrollHeight - parentRef.clientHeight,
+            behavior: isSmooth ? 'smooth' : 'auto'
+        });
     }
 
-    const maintainScroll = (parentRef)=>{
+    const maintainScrollOnPrevLoad = (parentRef)=>{
         let newScrollHeight = parentRef.scrollHeight;
-        console.log("Current Scroll Top: " + currentScrollTop.current);
+        console.log("Current Scroll Top: " + currentScrollTop);
         parentRef.scrollTo({
-            top: newScrollHeight - currentScrollHeight.current + currentScrollTop.current,
+            top: newScrollHeight - currentScrollHeight + currentScrollTop,
             behavior: 'auto'
         });
-        currentScrollTop.current = parentRef.scrollTop;
-        currentScrollHeight.current = newScrollHeight;
+        currentScrollTop = parentRef.scrollTop;
+        currentScrollHeight = newScrollHeight;
     }
 
     const chatScrollHandler = (event)=>{
         let chatBox = event.target;
-        currentScrollTop.current = chatBox.scrollTop;
+        currentScrollTop = chatBox.scrollTop;
         if(chatBox.scrollTop === 0){
+            // load previous chats when reached the top of the chatbox div
             console.log('Reached Top of the chat thread');
             (async()=>{
                 let chatTemp = [...chatThread];
                 let previousChatData = await fetchChatRange();
                 chatTemp.unshift(...previousChatData);
                 setTimeout(()=>{
+                    prevLoadFlag = true;
                     setChatThread(chatTemp);
-                }, 1000);
+                }, 500);
             })();
 
         }
-        // console.log('Scroll Height: '+ chatBox.scrollHeight);
-        // console.log('Client Height: '+ chatBox.clientHeight);
-        // console.log('Scroll Top: '+ chatBox.scrollTop);
         if(chatBox.scrollTop === chatBox.scrollHeight - chatBox.clientHeight){
             console.log('Reached Bottom of the chat thread');
         }
@@ -127,22 +154,25 @@ function ChatTextPanel(props){
             status: 'sent',
             timestamp: 'DD/MM/YY HH:mm'
         });
+        newChatFlag = true;
         setChatThread(chatTempThread);
         setInputText('');
     }
 
+    // API fetch chat data
     const fetchChatInitial = async()=>{
         let response = await fetch('/user/get-chat-thread-first');
         let chatData = await response.json();
-        lastMsgCount.current = chatData.chatLength;
+        lastMsgCount = chatData.chatLength;
+        chatWindow = chatData.chatWindow;
         return chatData.chatData;
     }
 
     const fetchChatRange = async()=>{
-        console.log('last msg count: ' + lastMsgCount.current);
-        let response = await fetch(`/user/get-chat-thread-range/${lastMsgCount.current}`);
+        console.log('last msg count: ' + lastMsgCount);
+        let response = await fetch(`/user/get-chat-thread-range/${lastMsgCount}`);
         let previousChatData = await response.json();
-        lastMsgCount.current = lastMsgCount.current - 20;
+        lastMsgCount = lastMsgCount - chatWindow;
         return previousChatData;
     }
 
@@ -173,4 +203,4 @@ function ChatTextPanel(props){
     );
 }
 
-export default ChatTextPanel;
+export default React.memo(ChatTextPanel);
