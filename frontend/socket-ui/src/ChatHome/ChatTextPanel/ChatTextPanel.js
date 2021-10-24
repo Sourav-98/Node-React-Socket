@@ -7,11 +7,7 @@ import React, { useState, useEffect, useLayoutEffect, useRef } from "react";
 
 import { SocketChatMessagingService } from './SocketChatMessagingService';
 
-import ChatTextElement from "./ChatTextElement/ChatTextElement";
 import ChatDisplayPanel from "./ChatDisplayPanel/ChatDisplayPanel";
-
-import BubbleBounceLoader from './TextPanelAnimationUtil/BubbleBounceLoader/BubbleBounceLoader';
-import BubbleZoomLoader from './TextPanelAnimationUtil/BubbleZoomLoader/BubbleZoomLoader';
 
 function ChatTextPanel(props){
 
@@ -94,7 +90,7 @@ function ChatTextPanel(props){
                 // prevLoadFlag = true;
                 setPrevLoadFlag(true);
                 setChatThread(chatTemp);
-            }, 500);
+            }, 850);
         })();
     }
 
@@ -117,22 +113,12 @@ function ChatTextPanel(props){
 
     return(
         <div className="chat-text-panel-container">
-            <div className="chat-info-box">
+            <div className="chat-user-info-box">
                 
             </div>
-            <ChatDisplayPanel chatThread={chatThread} firstLoadFlag={firstLoadFlag} prevLoadFlag={prevLoadFlag} newChatFlag={newChatFlag} setFirstLoadFlag={setFirstLoadFlag} setPrevLoadFlag={setPrevLoadFlag} setNewChatFlag={setNewChatFlag} setPreviousChat={setPreviousChat}></ChatDisplayPanel>
-            {/* <div ref={chatBoxRef} id="main-chat-thread-box" onScroll={chatScrollHandler} className="chat-thread-box">
-                <BubbleBounceLoader></BubbleBounceLoader>
-                <BubbleZoomLoader></BubbleZoomLoader>
-                <br/>
-                {
-                    chatThread.map( (chatElement, index) => {
-                        return(
-                            <ChatTextElement key={chatElement._id} text={chatElement.text} align={chatElement.align} status={chatElement.status} time={chatElement.timestamp}></ChatTextElement>
-                        )
-                    })
-               }
-            </div>     */}
+            <div className="chat-thread-box">
+                <ChatDisplayPanel chatThread={chatThread} firstLoadFlag={firstLoadFlag} prevLoadFlag={prevLoadFlag} newChatFlag={newChatFlag} setFirstLoadFlag={setFirstLoadFlag} setPrevLoadFlag={setPrevLoadFlag} setNewChatFlag={setNewChatFlag} setPreviousChat={setPreviousChat}></ChatDisplayPanel>
+            </div>
             <div className="chat-text-area-box">
                 <input id="text-message" value={inputText} placeholder="Enter Message..." onChange={inputTextHandler} onFocus={focusHandler} onBlur={blurHandler} onKeyPress={enterKeyPressHandler}/>
                 <button id="messageButton" onClick={messageTransmit}>

@@ -10,6 +10,7 @@ const socketio = require('socket.io');
 const dotenv = require('dotenv');
 
 const { Connection } = require('./util/dbConn');
+const { SocketConnection } = require('./util/socketServer/socketConn');
 
 const expressServer = require('./server');
 
@@ -28,12 +29,17 @@ const httpsServer = https.createServer(credentials, expressServer);
 // establish the db connection
 Connection.connect();
 
-const io = socketio(httpsServer, {       // creating the Socket.io server on the same port as that of the http server
+// create the socket server
+SocketConnection.init(httpsServer, {       // creating the Socket.io server on the same port as that of the http server
     path: "/chat-api"
 });
 
+// const io = socketio(httpsServer, {       // creating the Socket.io server on the same port as that of the http server
+//     path: "/chat-api"
+// });
+
 // Use the socket connection service
-SocketService(io);
+SocketService(SocketConnection.getSocketConnection());
 
 let port = process.env['PORT'] || 5000;
 let host = process.env['HOST'] || "localhost";

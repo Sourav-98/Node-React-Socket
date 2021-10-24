@@ -6,7 +6,7 @@
     flex-direction: column;
 }
 
-.chat-info-box{
+.chat-user-info-box{
     box-sizing: border-box;
     width: 100%;
     height: 120px;
@@ -21,7 +21,6 @@
     border: 0.5px solid rgb(100, 100, 100);
     display: block;
     overflow-y: scroll;
-    /* scroll-behavior: smooth; */
 }
 
 .chat-text-area-box{

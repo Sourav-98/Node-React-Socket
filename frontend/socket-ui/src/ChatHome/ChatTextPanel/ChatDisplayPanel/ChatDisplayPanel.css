@@ -1,11 +1,90 @@
 
-.chat-thread-box{
+.chat-display-panel-container{
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    /* scroll-behavior: smooth; */
+}
+
+.chat-display-panel-container>.chat-display-list{
     box-sizing: border-box;
     width: 100%;
     height: 100%;
     padding: 5px;
-    border: 0.5px solid rgb(100, 100, 100);
     display: block;
     overflow-y: scroll;
-    /* scroll-behavior: smooth; */
 }
+
+.chat-display-panel-container>.chat-scroll-dropper-button-container{
+    position: absolute;
+    bottom: 15px;
+    left: 10px;
+}
+
+.chat-scroll-dropper-button-container>.drop-button{
+    width: 34px;
+    height: 34px;
+    font-size: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 999px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 1px 2px 2px rgb(200, 200, 200);
+    cursor: pointer;
+    -webkit-transition: 0.12s ease-in-out;
+    transition: 0.12s ease-in-out;
+}
+
+.drop-button:hover{
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+    box-shadow: 1px 2px 4px rgb(180, 180, 180);
+}
+
+
+
+@keyframes zoomIn {
+    from{
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    }
+    to{
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+@keyframes zoomOut {
+    from{
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+    to{
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    }
+}
+
+.drop-button-fade-enter{
+    -webkit-transform: scale(0);
+    transform: scale(0);
+}
+.drop-button-fade-enter-active{
+    -webkit-animation: zoomIn 0.1s ease-in-out forwards;
+    animation: zoomIn 0.1s ease-in-out forwards;
+}
+.drop-button-fade-exit{
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+.drop-button-fade-exit-active{
+    -webkit-animation: zoomOut 0.1s ease-in-out forwards;
+    animation: zoomOut 0.1s ease-in-out forwards;
+}
+
+
+

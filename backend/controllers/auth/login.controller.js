@@ -13,6 +13,11 @@ loginController.get('/login', async (req, res)=>{
 
 // });
 
+// Passport JS login for Google
+loginController.post('/login-google', (req, res)=>{
+
+});
+
 loginController.post('/login-dummy', authMiddleware.userExistsMiddleware, authMiddleware.userPasswordVerifierMiddleware, async (req, res)=>{
     res.send({  // flow reaches here after a successfull pass in the 2 middlewares
         'message' : 'User Authentication Successful'
