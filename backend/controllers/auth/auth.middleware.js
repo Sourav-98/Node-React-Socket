@@ -6,7 +6,7 @@ const registerService = require('./../../services/admin/admin.service');
 exports.userExistsMiddleware = async function(req, res, next){
     let userData = req.body;
     try{
-        let loginUser = await Connection._db.collection('chat-users').findOne({ emailId : userData.username });
+        let loginUser = await Connection._db.collection('chat-users').findOne({ emailId : userData.email });
         if (!loginUser){
             res.send({      // if the user is not found, the response is sent to break the flow
                 'error' : 'User Not Found - 404'

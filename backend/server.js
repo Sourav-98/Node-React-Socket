@@ -1,6 +1,6 @@
 
 const express = require('express');
-const bodyParser = require('body-parser');
+// const bodyParser = require('body-parser');
 const cors = require('cors');
 const csrf = require('csurf');
 const cookieParser = require('cookie-parser');
@@ -20,11 +20,12 @@ app.use(cors({
 }));
 
 app.use(cookieParser());
-app.use(csrf({
-    cookie: true
-}));
+// app.use(csrf({
+//     cookie: true
+// }));
 
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 app.use(loginController);
 app.use(registerController);
 app.use('/admin', adminController);

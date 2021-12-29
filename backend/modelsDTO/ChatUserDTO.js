@@ -1,14 +1,14 @@
 
-
-class ChatUser{
+class ChatUserDTO{
     
-    constructor(firstName, lastName, emailId, password, rolesList){
+    constructor(firstName = undefined, lastName = undefined, emailId = undefined, password = undefined, lastLogin = undefined, isVerified = false, rolesList = undefined){
         this.firstName = firstName;
         this.lastName = lastName;
         this.emailId = emailId;
         this.password = password;
-        this.isVerified = false;
-        this.roles = rolesList;
+        this.lastLogin = lastLogin;
+        this.isVerified = isVerified;
+        this.rolesList = rolesList;
     }
 
     setFirstName(firstName){
@@ -27,8 +27,16 @@ class ChatUser{
         this.password = password;
     }
 
+    setLastLogin(lastLogin){
+        this.lastLogin = lastLogin;
+    }
+
     setIsVerified(isVerified){
         this.isVerified = isVerified;
+    }
+
+    setRolesList(rolesList){
+        this.rolesList = rolesList;
     }
 
     getFirstName(){
@@ -47,10 +55,17 @@ class ChatUser{
         return this.password;
     }
 
+    getLastLogin(){
+        return this.lastLogin;
+    }
+
     getIsVerified(){
         return this.isVerified;
     }
+
+    getRolesList(){
+        return this.rolesList;
+    }
 }
 
-module.exports = { ChatUser };
-
+module.exports = { ChatUserDTO };

@@ -1,3 +1,4 @@
+
 const MongoClient = require('mongodb').MongoClient;
 
 const dbConfig = require('./db.config').dbConfig;
@@ -26,6 +27,10 @@ class Connection{
                 throw err;
             })
         }
+    }
+
+    getDb(){
+        return _db;
     }
 }
 

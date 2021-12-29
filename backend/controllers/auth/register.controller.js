@@ -1,9 +1,9 @@
 
-const registerController = require('express').Router();
-
-
+const authMiddleware = require('./auth.middleware');
 const registerService = require('../../services/auth/register.service');
 
+
+const registerController = require('express').Router();
 registerController.get('/register', async (req, res)=>{
     let data = await registerService.defaultRegisterService();
     res.send(JSON.stringify(data));

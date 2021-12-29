@@ -1,5 +1,5 @@
 
-const { ChatUser } = require('../../models/ChatUser');
+const { ChatUser } = require('../../modelsDTO/ChatUserDTO');
 const { Connection } = require('../../util/dbConn');
 
 let defaultMessage = {
@@ -19,7 +19,7 @@ exports.newUserRegistration = async function(userData){
     }
     catch(err){
         switch(err.code){
-            case 11000: throw {
+            case 11000: throw { // mongodb error 11000 - entry with the same primary key already exists
                 err_code: err.code, 
                 err_message: "Error - User with an email id: " + userData.email + " already exists!"
             };
