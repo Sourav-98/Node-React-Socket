@@ -1,6 +1,8 @@
 
-const { ChatUser } = require('../../modelsDTO/ChatUserDTO');
-const { Connection } = require('../../util/dbConn');
+const { ChatUserDAO } = require('../../repositoryDAO/ChatUserDAO');
+const { ChatUserDTO } = require('./../../modelsDTO/ChatUserDTO')
+
+const chatUserDAO = new ChatUserDAO();
 
 let defaultMessage = {
     service: "Register Service", 
@@ -12,10 +14,9 @@ exports.defaultRegisterService = async function(){
 }
 
 exports.newUserRegistration = async function(userData){
-    let user = new ChatUser(userData.fname, userData.lname, userData.email, userData.passwd);
+    let user = new ChatUserDTO(userData.firstName, userData.lastName, userData.emailId, userData.password, user);
     try{
-        let result = await Connection._db.collection('chat-users').insertOne(user);
-        return result;
+        return await ChatUserDAO.insertNewUser(user);
     }
     catch(err){
         switch(err.code){

@@ -1,12 +1,13 @@
 
 class ChatUserDTO{
     
-    constructor(firstName = undefined, lastName = undefined, emailId = undefined, password = undefined, lastLogin = undefined, isVerified = false, rolesList = undefined){
+    constructor(firstName = undefined, lastName = undefined, emailId = undefined, password = undefined, lastLogin = undefined, lastPasswordChange = undefined, isVerified = false, rolesList = undefined){
         this.firstName = firstName;
         this.lastName = lastName;
         this.emailId = emailId;
         this.password = password;
         this.lastLogin = lastLogin;
+        this.lastPasswordChange = lastPasswordChange;
         this.isVerified = isVerified;
         this.rolesList = rolesList;
     }
@@ -29,6 +30,10 @@ class ChatUserDTO{
 
     setLastLogin(lastLogin){
         this.lastLogin = lastLogin;
+    }
+
+    setLastPasswordChange(lastPasswordChange){
+        this.lastPasswordChange = lastPasswordChange;
     }
 
     setIsVerified(isVerified){
@@ -57,6 +62,10 @@ class ChatUserDTO{
 
     getLastLogin(){
         return this.lastLogin;
+    }
+
+    getLastPasswordChange(){
+        return this.lastPasswordChange;
     }
 
     getIsVerified(){

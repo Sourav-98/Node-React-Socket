@@ -41,7 +41,7 @@ SocketConnection.init(httpsServer, {       // creating the Socket.io server on t
 // Use the socket connection service
 SocketService(SocketConnection.getSocketConnection());
 
-let port = process.env['PORT'] || 5000;
+let port = 6000;
 let host = process.env['HOST'] || "localhost";
 
 httpsServer.listen(port, ()=>{

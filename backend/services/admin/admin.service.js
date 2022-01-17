@@ -1,14 +1,13 @@
 
 const { Connection } = require('../../util/dbConn');
-const { ChatUser } = require('./../../models/ChatUser');
+const { ChatUserDAO } = require('./../../repositoryDAO/ChatUserDAO');
 
-
-exports.getChatUsers = async function(){
+exports.getAllChatUsers = async function(){
     try{
-        let chatUsers = await Connection._db.collection('chat-users').find().toArray();
-        return chatUsers;
-
+        await this.dummySleepAsync();
+        return await ChatUserDAO.findAll();
     }catch(err){
+        console.log("Error at getAllChatUsers() service -> " + err);
         throw err;
     }
 }
@@ -32,13 +31,13 @@ exports.getChatUsersAlt = async function(){
 
 
 exports.dummySleepPromise = function(interval){
-    return new Promise((resolve, reject)=>{
+    return new Promise((resolve)=>{
         setTimeout(resolve, interval);
     });
 };
 
 exports.dummySleepAsync = async function(interval){
-    await new Promise((resolve, reject)=>{
+    await new Promise((resolve)=>{
         setTimeout(resolve, interval);
     });
 }

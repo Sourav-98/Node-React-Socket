@@ -47,8 +47,6 @@ export default function ChatDisplayPanel(props){
         }
     }, [props.chatThread]);
 
-
-
     const dropToBottom = (parentRef, isSmooth = false)=>{
         currentScrollHeight = parentRef.scrollHeight;
         parentRef.scrollTo({

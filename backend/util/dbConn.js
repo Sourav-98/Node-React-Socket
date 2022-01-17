@@ -29,8 +29,8 @@ class Connection{
         }
     }
 
-    getDb(){
-        return _db;
+    static getDb(){
+        return this._db;
     }
 }
 

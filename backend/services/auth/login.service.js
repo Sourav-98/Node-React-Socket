@@ -1,6 +1,7 @@
 // login service - provides authentication service for user login
 
 const { Connection } = require('./../../util/dbConn');
+const { ChatUserDAO } = require('./../../repositoryDAO/ChatUserDAO');
 
 const defaultMessage = {
     service: "Login Service", 
@@ -13,8 +14,22 @@ exports.defaultLoginMessage = async function(){
 
 exports.defaultUserLogin = async function(userCredentials){
     try{
-        let loginUser = await Connection._db.collection('chat-users').findOne({username : userCredentials.username});
+        let loginUser = await ChatUserDAO.findUserById(userCredentials.emailId);
         console.log(loginUser);
+        if(loginUser.getPassword() != userCredentials.password){
+            return false;
+        }
+        return loginUser;
+    }
+    catch(err){
+        console.log(err);
+    }
+}
+
+exports.emailVerification = async function(userEmailId){
+    try{
+        // Perform email verification hashcode check
+        return await ChatUserDAO.updateUserIsVerifiedByEmailId(userEmailId);
     }
     catch(err){
         console.log(err);
